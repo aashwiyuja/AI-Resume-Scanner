@@ -1,7 +1,7 @@
-# AL Resume Scanner
+# AI Resume Scanner
 
 ## Overview
-This project is a ** AI Resume Scanner** that uses Natural Language Processing (NLP) techniques to analyze resumes, recommend relevant skills, and suggest courses based on the candidate’s skills. It is built with Python and deployed as a web application using Streamlit. The app allows users to upload their resumes, and based on the content, it processes and outputs useful insights like predicted job fields, recommended skills, and course suggestions.
+This project is a  AI Resume Scanner that uses Natural Language Processing (NLP) techniques to analyze resumes, recommend relevant skills, and suggest courses based on the candidate’s skills. It is built with Python and deployed as a web application using Streamlit. The app allows users to upload their resumes, and based on the content, it processes and outputs useful insights like predicted job fields, recommended skills, and course suggestions.
 
 ## Features
 - **Resume Upload**: Upload a resume in PDF or text format.
