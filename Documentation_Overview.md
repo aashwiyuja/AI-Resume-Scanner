@@ -1,4 +1,4 @@
-# Project Story: AI Resume Scanner
+# AI Resume Scanner
 
 ## Problem Statement (Situation)
 In today’s competitive job market, candidates often struggle to understand how their resumes align with industry expectations. Many are unsure which skills to highlight or what courses to pursue to improve their chances. Recruiters, on the other hand, face the challenge of quickly evaluating resumes at scale. This project was born to bridge that gap by using AI to help candidates enhance their resumes and guide them toward relevant learning paths.
