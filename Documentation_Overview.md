@@ -1,9 +1,9 @@
 # AI Resume Scanner
 
-## Problem Statement (Situation)
+## Problem Statement
 In today’s competitive job market, candidates often struggle to understand how their resumes align with industry expectations. Many are unsure which skills to highlight or what courses to pursue to improve their chances. Recruiters, on the other hand, face the challenge of quickly evaluating resumes at scale. This project was born to bridge that gap by using AI to help candidates enhance their resumes and guide them toward relevant learning paths.
 
-## Strategies Tried (Task + Action)
+## Strategies Tried
 
 ### Core Features
 - **Resume Upload**: Users can upload resumes in PDF or text format.
@@ -37,7 +37,7 @@ In today’s competitive job market, candidates often struggle to understand how
 ### Base64 Integration
 - Used Python’s `base64` library to encode/decode binary data (e.g., images, files) for secure transmission in text-based formats like JSON or HTML.
 
-## What We Aim to Achieve (Future Goals)
+## What We Aim to Achieve
 - **Smarter Recommendations**: Integrate real-time job market data to suggest trending skills and courses.
 - **User Profiles**: Allow users to save progress and track learning paths.
 - **Resume Scoring**: Provide a score or feedback on resume quality.
@@ -45,11 +45,11 @@ In today’s competitive job market, candidates often struggle to understand how
 - **Advanced Authentication**: Implement OAuth or similar for secure login.
 - **Cloud Deployment**: Host the app on platforms like Heroku, AWS, or Azure for scalability.
 
-## Observations from the Project (Result)
+## Observations from the Project
 - **NLP is powerful** but requires careful tuning to extract meaningful insights.
-- **User experience matters**—Streamlit helped build a clean, intuitive interface.
+- **User experience matters**  Streamlit helped build a clean, intuitive interface.
 - **Randomized suggestions** are helpful but could be improved with personalization.
-- **Data quality is key**—resumes vary widely in format and content, so preprocessing is crucial.
+- **Data quality is key** resumes vary widely in format and content, so preprocessing is crucial.
 
 ## Recommendations & Improvements
 - **Improve Skill Matching**: Use semantic similarity or embeddings for better accuracy.
