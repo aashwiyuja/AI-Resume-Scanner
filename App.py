@@ -93,14 +93,25 @@ def course_recommender(course_list):
 
 # SQL server connection
 
-connection = pymysql.connect(host='localhost',user='root',password='Abcdef@123456',db='cv')
+import psycopg2
+
+connection = psycopg2.connect(
+    host="containers.railway.app",
+    database="railway",
+    user="postgres",
+    password="qkRxcMnMHTpeIeLZOCtEYfTAdUrYUdvt",
+    port="5432"
+)
 cursor = connection.cursor()
 
-def insert_data(name,email,res_score,timestamp,no_of_pages,reco_field,cand_level,skills,recommended_skills,courses):
-    DB_table_name = 'user_data'
-    insert_sql = "insert into " + DB_table_name + """
-    values (0,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
-    rec_values = (name, email, str(res_score), timestamp,str(no_of_pages), reco_field, cand_level, skills,recommended_skills,courses)
+def insert_data(name, email, res_score, timestamp, no_of_pages, reco_field, cand_level, skills, recommended_skills, courses):
+    insert_sql = """
+        INSERT INTO user_data (
+            name, email, res_score, timestamp, no_of_pages,
+            reco_field, cand_level, skills, recommended_skills, courses
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    """
+    rec_values = (name, email, res_score, timestamp, no_of_pages, reco_field, cand_level, skills, recommended_skills, courses)
     cursor.execute(insert_sql, rec_values)
     connection.commit()
 
@@ -398,3 +409,4 @@ def run():
 
 
 run()
+
