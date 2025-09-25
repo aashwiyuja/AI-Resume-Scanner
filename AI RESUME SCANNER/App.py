@@ -92,7 +92,7 @@ def course_recommender(course_list):
 
 # SQL server connection
 
-connection = pymysql.connect(host='localhost',user='...',password='...',db='cv')
+connection = pymysql.connect(host='localhost',user='root',password='Abcdef@123456',db='cv')
 cursor = connection.cursor()
 
 def insert_data(name,email,res_score,timestamp,no_of_pages,reco_field,cand_level,skills,recommended_skills,courses):
@@ -394,5 +394,6 @@ def run():
 
             else:
                 st.error("Wrong ID & Password Provided")
+
 
 run()
