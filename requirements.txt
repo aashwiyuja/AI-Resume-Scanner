@@ -7,3 +7,9 @@ plotly
 pymysql
 streamlit-tags
 Pillow
+nltk
+spacy
+python-docx
+pdfminer.six
+numpy
+scikit-learn 
