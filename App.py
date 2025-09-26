@@ -132,29 +132,24 @@ def run():
     link = '[Developed by Aashwiyuja](https://www.linkedin.com/in/aashwiyuja-naidu/)'
     st.sidebar.markdown(link, unsafe_allow_html=True)
 
-
-    # Creating the Database
-
-    db_sql = """CREATE DATABASE IF NOT EXISTS CV;"""
-    cursor.execute(db_sql)
-
     # Create the table
 
     DB_table_name = 'user_data'
-    table_sql = "CREATE TABLE IF NOT EXISTS " + DB_table_name + """
-                    (ID INT NOT NULL AUTO_INCREMENT,
-                     Name varchar(500) NOT NULL,
-                     Email_ID VARCHAR(500) NOT NULL,
-                     resume_score VARCHAR(8) NOT NULL,
-                     Timestamp VARCHAR(50) NOT NULL,
-                     Page_no VARCHAR(5) NOT NULL,
-                     Predicted_Field BLOB NOT NULL,
-                     User_level BLOB NOT NULL,
-                     Actual_skills BLOB NOT NULL,
-                     Recommended_skills BLOB NOT NULL,
-                     Recommended_courses BLOB NOT NULL,
-                     PRIMARY KEY (ID));
-                    """
+    table_sql = f"""
+        CREATE TABLE IF NOT EXISTS {DB_table_name} (
+            id SERIAL PRIMARY KEY,
+            name TEXT,
+            email TEXT,
+            res_score TEXT,
+            timestamp TEXT,
+            no_of_pages TEXT,
+            reco_field TEXT,
+            cand_level TEXT,
+            skills TEXT,
+            recommended_skills TEXT,
+            courses TEXT
+        );
+    """
     cursor.execute(table_sql)
     
     # User side
@@ -412,6 +407,7 @@ def run():
 
 
 run()
+
 
 
 
