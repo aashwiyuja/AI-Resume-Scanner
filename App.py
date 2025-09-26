@@ -141,7 +141,7 @@ def run():
             with open(save_pdf_path, "wb") as f:
                 f.write(pdf_file.getbuffer())
             show_pdf(save_pdf_path)
-            resume_data = ResumeParser(save_pdf_path).get_extracted_data()
+            # resume_data = ResumeParser(save_pdf_path).get_extracted_data()
             if resume_data:
                 ## Getting the whole resume data
                 resume_text = pdf_reader(save_pdf_path)
@@ -372,6 +372,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
