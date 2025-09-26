@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-st.subheader("Submitted Resume Feedback")
-st.dataframe(df)
 import base64,random
 import time,datetime
 import nltk
@@ -389,6 +387,7 @@ def run():
 
 
 run()
+
 
 
 
