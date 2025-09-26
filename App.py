@@ -94,6 +94,7 @@ def course_recommender(course_list):
 # SQL server connection
 
 import psycopg2
+import ssl
 
 connection = psycopg2.connect(
     host="db.xfytzpasiwsqvcgtrbym.supabase.co",
@@ -101,7 +102,8 @@ connection = psycopg2.connect(
     user="postgres",
     password="resumescannerdb",
     port="5432",
-    sslmode="require"
+    sslmode="require",
+    sslrootcert="/etc/ssl/certs/ca-certificates.crt" 
 )
 cursor = connection.cursor()
 
@@ -410,6 +412,7 @@ def run():
 
 
 run()
+
 
 
 
