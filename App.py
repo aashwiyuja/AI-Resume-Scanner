@@ -143,6 +143,10 @@ def course_recommender(course_list):
     return rec_course
 
 def insert_data(name, email, res_score, timestamp, no_of_pages, reco_field, cand_level, skills, recommended_skills, courses):
+    # Safely format lists into strings for Supabase text columns
+    def format_list(value):
+        return ', '.join(value) if isinstance(value, list) else str(value)
+
     data = {
         "name": name,
         "email": email,
@@ -151,12 +155,19 @@ def insert_data(name, email, res_score, timestamp, no_of_pages, reco_field, cand
         "no_of_pages": no_of_pages,
         "reco_field": reco_field,
         "cand_level": cand_level,
-        "skills": ', '.join(skills) if isinstance(skills, list) else str(skills),
-        "recommended_skills": ', '.join(recommended_skills) if isinstance(recommended_skills, list) else str(recommended_skills),
-        "courses": ', '.join(courses) if isinstance(courses, list) else str(courses)
+        "skills": format_list(skills),
+        "recommended_skills": format_list(recommended_skills),
+        "courses": format_list(courses)
     }
-    st.write("Data being inserted:", data)
-    supabase.table("user_data").insert(data).execute()
+
+    st.write("📦 Data being inserted into Supabase:", data)
+
+    try:
+        supabase.table("user_data").insert(data).execute()
+        st.success("✅ Data inserted successfully!")
+    except Exception as e:
+        st.error("❌ Supabase insert failed.")
+        st.text(str(e))
 
 st.set_page_config(
    page_title="AI Resume Scanner",
@@ -404,6 +415,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
