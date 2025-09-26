@@ -33,7 +33,7 @@ from supabase import create_client
 
 # Supabase connection
 url = "https://xfytzpasiwsqvcgtrbym.supabase.co"
-key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."  # your full anon key
+key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhmeXR6cGFzaXdzcXZjZ3RyYnltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg4NDIzOTQsImV4cCI6MjA3NDQxODM5NH0.3PCsU7Fd0etregCEoKgUkT_-BFNwoHoj5lSabjRIxeI"  # your full anon key
 supabase = create_client(url, key)
 
 # Fetching the YouTube video
@@ -416,6 +416,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
