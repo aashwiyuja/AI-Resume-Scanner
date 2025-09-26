@@ -347,9 +347,9 @@ def run():
                 response = supabase.table("user_data").select("*").execute()
                 rows = response.data
                 df = pd.DataFrame(rows)
+                st.dataframe(df)
             
                 st.header("User's Data")
-                st.dataframe(df)
                 st.markdown(get_table_download_link(df, 'User_Data.csv', 'Download Report'), unsafe_allow_html=True)
             
                 ## Pie chart for predicted field recommendations
@@ -369,6 +369,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
