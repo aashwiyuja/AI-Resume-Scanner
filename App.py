@@ -120,11 +120,11 @@ def parse_resume(file_path):
 
 # Displaying the uploaded PDF
 
-def show_pdf(file_path):
-    with open(file_path, "rb") as f:
-        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-    pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
+def show_pdf_from_upload(uploaded_file):
+    base64_pdf = base64.b64encode(uploaded_file.read()).decode('utf-8')
+    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
     st.markdown(pdf_display, unsafe_allow_html=True)
+
 
 # Recommending COurses based on the uploaded resumes
 
@@ -184,11 +184,13 @@ def run():
         if pdf_file is not None:
             with st.spinner('Uploading your Resume...'):
                 time.sleep(4)
-            save_pdf_path = './Uploaded_Resumes/'+pdf_file.name
+            show_pdf_from_upload(pdf_file)
+            save_pdf_path = './Uploaded_Resumes/' + pdf_file.name
             with open(save_pdf_path, "wb") as f:
                 f.write(pdf_file.getbuffer())
-            show_pdf(save_pdf_path)
+                
             resume_data = parse_resume(save_pdf_path)
+
             if resume_data:
                 ## Getting the whole resume data
                 resume_text = pdf_reader(save_pdf_path)
@@ -407,6 +409,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
