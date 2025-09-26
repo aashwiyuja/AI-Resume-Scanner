@@ -75,6 +75,34 @@ def pdf_reader(file):
     fake_file_handle.close()
     return text
 
+import re
+from PyPDF2 import PdfReader
+
+def parse_resume(file_path):
+    text = pdf_reader(file_path)
+    reader = PdfReader(file_path)
+    num_pages = len(reader.pages)
+
+    # Extract email and phone
+    email = re.search(r'[\w\.-]+@[\w\.-]+', text)
+    phone = re.search(r'\+?\d[\d\s\-\(\)]{8,}\d', text)
+
+    # Estimate name from top lines
+    lines = text.strip().split('\n')
+    name = "Candidate"
+    for line in lines[:5]:
+        if len(line.split()) <= 3 and line[0].isupper():
+            name = line.strip()
+            break
+
+    return {
+        'name': name,
+        'email': email.group(0) if email else '',
+        'mobile_number': phone.group(0) if phone else '',
+        'no_of_pages': num_pages,
+        'text': text
+    }
+
 # Displaying the uploaded PDF
 
 def show_pdf(file_path):
@@ -141,7 +169,7 @@ def run():
             with open(save_pdf_path, "wb") as f:
                 f.write(pdf_file.getbuffer())
             show_pdf(save_pdf_path)
-            # resume_data = ResumeParser(save_pdf_path).get_extracted_data()
+            resume_data = parse_resume(save_pdf_path)
             if resume_data:
                 ## Getting the whole resume data
                 resume_text = pdf_reader(save_pdf_path)
@@ -372,6 +400,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
