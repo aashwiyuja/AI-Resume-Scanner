@@ -100,7 +100,7 @@ def parse_resume(file_path):
         'email': email.group(0) if email else '',
         'mobile_number': phone.group(0) if phone else '',
         'no_of_pages': num_pages,
-        'text': text
+        'text': text,
         'skills': skills
     }
 
@@ -401,6 +401,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
