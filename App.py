@@ -366,28 +366,11 @@ def run():
                     values = df['cand_level'].value_counts()
                     fig = px.pie(names=values.index, values=values.values, title="Pie-Chart for User's Experienced Level")
                     st.plotly_chart(fig)
-
-                ## Pie chart for predicted field recommendations
-                labels = plot_data['Predicted Field'].unique()
-                print(labels)
-                values = plot_data['Predicted Field'].value_counts()
-                print(values)
-                st.subheader("Pie-Chart for Predicted Field Recommendation")
-                fig = px.pie(names=values.index, values=values.values, title='Predicted Field according to the Skills')
-                st.plotly_chart(fig)
-
-                ### Pie chart for User's Experienced Level
-                labels = plot_data['User Level'].unique()
-                values = plot_data['User Level'].value_counts()
-                st.subheader("Pie-Chart for User's Experienced Level")
-                fig = px.pie(names=values.index, values=values.values, title="Pie-Chart for User's Experienced Level")
-                st.plotly_chart(fig)
-
             else:
                 st.error("Wrong ID & Password Provided")
 
-
 run()
+
 
 
 
