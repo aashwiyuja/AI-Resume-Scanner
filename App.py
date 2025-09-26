@@ -100,7 +100,8 @@ connection = psycopg2.connect(
     database="postgres",
     user="postgres",
     password="resumescannerdb",
-    port="5432"
+    port="5432",
+    sslmode="require"
 )
 cursor = connection.cursor()
 
@@ -409,5 +410,6 @@ def run():
 
 
 run()
+
 
 
