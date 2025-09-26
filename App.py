@@ -96,10 +96,10 @@ def course_recommender(course_list):
 import psycopg2
 
 connection = psycopg2.connect(
-    host="containers.railway.app",
-    database="railway",
+    host="db.xfytzpasiwsqvcgtrbym.supabase.co",
+    database="postgres",
     user="postgres",
-    password="qkRxcMnMHTpeIeLZOCtEYfTAdUrYUdvt",
+    password="resumescannerdb",
     port="5432"
 )
 cursor = connection.cursor()
@@ -409,4 +409,5 @@ def run():
 
 
 run()
+
 
