@@ -143,7 +143,6 @@ def course_recommender(course_list):
     return rec_course
 
 def insert_data(name, email, res_score, timestamp, no_of_pages, reco_field, cand_level, skills, recommended_skills, courses):
-    # Safely format lists into strings for Supabase text columns
     def format_list(value):
         return ', '.join(value) if isinstance(value, list) else str(value)
 
@@ -159,8 +158,6 @@ def insert_data(name, email, res_score, timestamp, no_of_pages, reco_field, cand
         "recommended_skills": format_list(recommended_skills),
         "courses": format_list(courses)
     }
-
-    st.write("📦 Data being inserted into Supabase:", data)
 
     try:
         supabase.table("user_data").insert(data).execute()
@@ -415,6 +412,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
