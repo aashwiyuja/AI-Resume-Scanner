@@ -143,7 +143,6 @@ def course_recommender(course_list):
     return rec_course
 
 def insert_data(name, email, res_score, timestamp, no_of_pages, reco_field, cand_level, skills, recommended_skills, courses):
-    st.write("Data being inserted:", data)
     data = {
         "name": name,
         "email": email,
@@ -156,6 +155,7 @@ def insert_data(name, email, res_score, timestamp, no_of_pages, reco_field, cand
         "recommended_skills": ', '.join(recommended_skills) if isinstance(recommended_skills, list) else str(recommended_skills),
         "courses": ', '.join(courses) if isinstance(courses, list) else str(courses)
     }
+    st.write("Data being inserted:", data)
     supabase.table("user_data").insert(data).execute()
 
 st.set_page_config(
@@ -404,6 +404,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
