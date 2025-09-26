@@ -25,6 +25,12 @@ subprocess.call(["pip", "install", "youtube-dl"])
 import plotly.express as px
 import nltk
 nltk.download('stopwords')
+from supabase import create_client
+
+url = "https://xfytzpasiwsqvcgtrbym.supabase.co"
+key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."  # your full anon key
+
+supabase = create_client(url, key)
 
 # Fetching the youtube video
 
@@ -90,33 +96,20 @@ def course_recommender(course_list):
             break
     return rec_course
 
-
-# SQL server connection
-
-import psycopg2
-import ssl
-
-connection = psycopg2.connect(
-    host="db.xfytzpasiwsqvcgtrbym.supabase.co",
-    database="postgres",
-    user="postgres",
-    password="resumescannerdb",
-    port="5432",
-    sslmode="require",
-    sslrootcert="/etc/ssl/certs/ca-certificates.crt" 
-)
-cursor = connection.cursor()
-
 def insert_data(name, email, res_score, timestamp, no_of_pages, reco_field, cand_level, skills, recommended_skills, courses):
-    insert_sql = """
-        INSERT INTO user_data (
-            name, email, res_score, timestamp, no_of_pages,
-            reco_field, cand_level, skills, recommended_skills, courses
-        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    """
-    rec_values = (name, email, res_score, timestamp, no_of_pages, reco_field, cand_level, skills, recommended_skills, courses)
-    cursor.execute(insert_sql, rec_values)
-    connection.commit()
+    data = {
+        "name": name,
+        "email": email,
+        "res_score": res_score,
+        "timestamp": timestamp,
+        "no_of_pages": no_of_pages,
+        "reco_field": reco_field,
+        "cand_level": cand_level,
+        "skills": skills,
+        "recommended_skills": recommended_skills,
+        "courses": courses
+    }
+    supabase.table("user_data").insert(data).execute()
 
 st.set_page_config(
    page_title="AI Resume Scanner",
@@ -131,26 +124,6 @@ def run():
     choice = st.sidebar.selectbox("Choose among the given options:", activities)
     link = '[Developed by Aashwiyuja](https://www.linkedin.com/in/aashwiyuja-naidu/)'
     st.sidebar.markdown(link, unsafe_allow_html=True)
-
-    # Create the table
-
-    DB_table_name = 'user_data'
-    table_sql = f"""
-        CREATE TABLE IF NOT EXISTS {DB_table_name} (
-            id SERIAL PRIMARY KEY,
-            name TEXT,
-            email TEXT,
-            res_score TEXT,
-            timestamp TEXT,
-            no_of_pages TEXT,
-            reco_field TEXT,
-            cand_level TEXT,
-            skills TEXT,
-            recommended_skills TEXT,
-            courses TEXT
-        );
-    """
-    cursor.execute(table_sql)
     
     # User side
     
@@ -407,6 +380,7 @@ def run():
 
 
 run()
+
 
 
 
