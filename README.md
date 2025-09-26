@@ -3,8 +3,22 @@
 ## Problem Statement
 In today’s competitive job market, candidates often struggle to understand how their resumes align with industry expectations. Many are unsure which skills to highlight or what courses to pursue to improve their chances. Recruiters, on the other hand, face the challenge of quickly evaluating resumes at scale. This project was born to bridge that gap by using AI to help candidates enhance their resumes and guide them toward relevant learning paths.
 
-## Problem Demo
-[![Watch the demo](thumbnail.png)](AI%20Resume%20Scanner.mp4)
+## App Screenshots
+
+<h3>Resume Upload Flow</h3>
+
+<img src="images/a.png" width="400"/>  
+<img src="images/b.png" width="400"/>  
+<img src="images/c.png" width="400"/>  
+<img src="images/d.png" width="400"/>  
+<img src="images/e.png" width="400"/>
+
+<h3>Admin Dashboard</h3>
+ 
+<img src="images/f.png" width="400"/>  
+<img src="images/g.png" width="400"/>  
+<img src="images/h.png" width="400"/>  
+<img src="images/i.png" width="400"/>
 
 ## Strategies Tried
 
