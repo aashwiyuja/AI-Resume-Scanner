@@ -151,7 +151,7 @@ def insert_data(name, email, res_score, timestamp, no_of_pages, reco_field, cand
         "no_of_pages": no_of_pages,
         "reco_field": reco_field,
         "cand_level": cand_level,
-        "skills": resume_data['skills'],
+        "skills": skills,
         "recommended_skills": recommended_skills,
         "courses": courses
     }
@@ -403,6 +403,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
