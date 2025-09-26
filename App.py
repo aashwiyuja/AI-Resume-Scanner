@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 st.subheader("Submitted Resume Feedback")
-df = pd.DataFrame(rows)
 st.dataframe(df)
 import base64,random
 import time,datetime
@@ -390,6 +389,7 @@ def run():
 
 
 run()
+
 
 
 
