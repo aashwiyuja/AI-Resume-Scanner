@@ -142,13 +142,13 @@ def course_recommender(course_list):
             break
     return rec_course
 
-import uuid
+import random
 def insert_data(name, email, res_score, timestamp, no_of_pages, reco_field, cand_level, skills, recommended_skills, courses):
     def format_list(value):
         return ', '.join(value) if isinstance(value, list) else str(value)
 
     data = {
-        "id": str(uuid.uuid4()),
+        "id": random.randint(100000, 999999),
         "name": name,
         "email": email,
         "res_score": res_score,
@@ -418,6 +418,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
