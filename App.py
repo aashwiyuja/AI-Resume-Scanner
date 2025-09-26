@@ -120,8 +120,8 @@ def parse_resume(file_path):
 
 # Displaying the uploaded PDF
 
-def show_pdf_from_upload(uploaded_file):
-    base64_pdf = base64.b64encode(uploaded_file.read()).decode('utf-8')
+def show_pdf_from_bytes(pdf_bytes):
+    base64_pdf = base64.b64encode(pdf_bytes).decode('utf-8')
     pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
     st.markdown(pdf_display, unsafe_allow_html=True)
 
@@ -184,11 +184,18 @@ def run():
         if pdf_file is not None:
             with st.spinner('Uploading your Resume...'):
                 time.sleep(4)
-            show_pdf_from_upload(pdf_file)
+    
+            # ✅ Read file once
+            pdf_bytes = pdf_file.read()
+    
+            # ✅ Display from bytes
+            show_pdf_from_bytes(pdf_bytes)
+    
+            # ✅ Save from bytes
             save_pdf_path = './Uploaded_Resumes/' + pdf_file.name
             with open(save_pdf_path, "wb") as f:
-                f.write(pdf_file.getbuffer())
-                
+                f.write(pdf_bytes)
+    
             resume_data = parse_resume(save_pdf_path)
 
             if resume_data:
@@ -409,6 +416,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
