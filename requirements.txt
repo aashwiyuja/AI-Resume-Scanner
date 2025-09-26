@@ -1,18 +1,14 @@
-pdfminer3
-pyresparser
 streamlit
 pandas
-pafy
-plotly
-pymysql
-streamlit-tags
-Pillow
-nltk
+pdfminer.six
 spacy
 en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
+nltk
+plotly
+streamlit-tags
+Pillow
 python-docx
-pdfminer.six
 numpy
-scikit-learn 
-psycopg2-binary
+scikit-learn
 supabase
+yt-dlp
