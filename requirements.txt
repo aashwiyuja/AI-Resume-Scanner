@@ -12,3 +12,4 @@ scikit-learn
 yt-dlp
 youtube-dl
 pafy
+supabase
