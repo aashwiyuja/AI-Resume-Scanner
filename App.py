@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-import base64,random
-import time,datetime
+import base64, random
+import time, datetime
 import nltk
 nltk.download('stopwords')
 
@@ -12,28 +12,32 @@ from pdfminer3.pdfpage import PDFPage
 from pdfminer3.pdfinterp import PDFResourceManager
 from pdfminer3.pdfinterp import PDFPageInterpreter
 from pdfminer3.converter import TextConverter
-import io,random
+import io
 from streamlit_tags import st_tags
 from PIL import Image
-import pymysql
-from Courses import ds_course,web_course,android_course,ios_course,uiux_course,resume_videos,interview_videos
-import os 
-os.environ["PAFY_BACKEND"] = "internal" 
+
+# Removed pymysql — no longer needed
+# Removed subprocess call — breaks Streamlit Cloud
+
+import os
+os.environ["PAFY_BACKEND"] = "yt-dlp"  # ✅ Use yt-dlp instead of youtube-dl
+
 import pafy
-import subprocess
-subprocess.call(["pip", "install", "youtube-dl"])
 import plotly.express as px
-import nltk
-nltk.download('stopwords')
+
+from Courses import (
+    ds_course, web_course, android_course, ios_course,
+    uiux_course, resume_videos, interview_videos
+)
+
 from supabase import create_client
 
+# Supabase connection
 url = "https://xfytzpasiwsqvcgtrbym.supabase.co"
 key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."  # your full anon key
-
 supabase = create_client(url, key)
 
-# Fetching the youtube video
-
+# Fetching the YouTube video
 def fetch_yt_video(link):
     try:
         video = pafy.new(link)
@@ -369,6 +373,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
