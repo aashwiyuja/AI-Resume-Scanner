@@ -349,7 +349,6 @@ def run():
                 df = pd.DataFrame(rows)
             
                 st.header("User's Data")
-                df = pd.DataFrame(rows)
                 st.dataframe(df)
                 st.markdown(get_table_download_link(df, 'User_Data.csv', 'Download Report'), unsafe_allow_html=True)
             
@@ -370,6 +369,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
