@@ -10,4 +10,5 @@ python-docx
 numpy
 scikit-learn
 yt-dlp
+youtube-dl
 pafy
