@@ -1,5 +1,8 @@
 import streamlit as st
 import pandas as pd
+st.subheader("Submitted Resume Feedback")
+df = pd.DataFrame(rows)
+st.dataframe(df)
 import base64,random
 import time,datetime
 import nltk
@@ -343,8 +346,8 @@ def run():
             if ad_user == 'Aashu' and ad_password == 'Aashu123':
                 st.success("Welcome Aashu!")
                 ## Display Data
-                cursor.execute('''SELECT * FROM user_data''')
-                data = cursor.fetchall()
+                response = supabase.table("user_data").select("*").execute()
+                rows = response.data
                 st.header("User's Data")
                 df = pd.DataFrame(data, columns=['ID', 'Name', 'Email', 'Resume Score', 'Timestamp', 'Total Page',
                                                  'Predicted Field', 'User Level', 'Actual Skills', 'Recommended Skills',
@@ -380,6 +383,7 @@ def run():
 
 
 run()
+
 
 
 
