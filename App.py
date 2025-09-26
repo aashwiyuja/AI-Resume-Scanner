@@ -367,7 +367,7 @@ def run():
                     st.warning("Couldn't load interview video due to a YouTube error.")
                     st.error(str(e))
 
-                connection.commit()
+                #connection.commit()
             else:
                 st.error('Something went wrong..')
     else:
@@ -407,6 +407,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
