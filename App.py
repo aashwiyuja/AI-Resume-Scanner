@@ -161,17 +161,6 @@ def insert_data(name, email, res_score, timestamp, no_of_pages, reco_field, cand
         "courses": format_list(courses)
     }
 
-    try:
-        st.text(f"Supabase URL: {url}")
-        st.text(f"Supabase Key Length: {len(key)}")
-        st.write("📦 Data being inserted into Supabase:", data)
-        
-        supabase.table("user_data").insert(data).execute()
-        st.success("✅ Data inserted successfully!")
-    except Exception as e:
-        st.error("❌ Supabase insert failed.")
-        st.text(str(e))
-
 st.set_page_config(
    page_title="AI Resume Scanner",
    page_icon='./Logo/logo.png',
@@ -418,6 +407,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
