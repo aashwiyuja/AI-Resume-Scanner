@@ -101,6 +101,7 @@ def parse_resume(file_path):
         'mobile_number': phone.group(0) if phone else '',
         'no_of_pages': num_pages,
         'text': text
+        'skills': skills
     }
 
 # Displaying the uploaded PDF
@@ -400,6 +401,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
