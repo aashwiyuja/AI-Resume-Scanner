@@ -6,7 +6,7 @@ import nltk
 nltk.download('stopwords')
 
 # Required libraries to parse the given resume pdf's
-from pyresparser import ResumeParser
+# from pyresparser import ResumeParser
 from pdfminer3.layout import LAParams, LTTextBox
 from pdfminer3.pdfpage import PDFPage
 from pdfminer3.pdfinterp import PDFResourceManager
@@ -373,6 +373,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
