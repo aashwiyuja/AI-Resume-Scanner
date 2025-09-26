@@ -346,6 +346,7 @@ def run():
                 ## Display Data
                 response = supabase.table("user_data").select("*").execute()
                 rows = response.data
+                df = pd.DataFrame(rows)
             
                 st.header("User's Data")
                 df = pd.DataFrame(rows)
@@ -387,6 +388,7 @@ def run():
 
 
 run()
+
 
 
 
