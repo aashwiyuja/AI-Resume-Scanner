@@ -178,25 +178,30 @@ def run():
     # User side
     
     if choice == 'User':
-        st.markdown('''<h5 style='text-align: left; color: #777777;'> Upload your resume, and get smart recommendations</h5>''',
-                    unsafe_allow_html=True)
-        pdf_file = st.file_uploader("Choose your Resume", type=["pdf"])
-        if pdf_file is not None:
-            with st.spinner('Uploading your Resume...'):
-                time.sleep(4)
-    
-            # ✅ Read file once
-            pdf_bytes = pdf_file.read()
-    
-            # ✅ Display from bytes
-            show_pdf_from_bytes(pdf_bytes)
-    
-            # ✅ Save from bytes
-            save_pdf_path = './Uploaded_Resumes/' + pdf_file.name
-            with open(save_pdf_path, "wb") as f:
-                f.write(pdf_bytes)
-    
-            resume_data = parse_resume(save_pdf_path)
+    st.markdown('''<h5 style='text-align: left; color: #777777;'> Upload your resume, and get smart recommendations</h5>''',
+                unsafe_allow_html=True)
+    pdf_file = st.file_uploader("Choose your Resume", type=["pdf"])
+    if pdf_file is not None:
+        with st.spinner('Uploading your Resume...'):
+            time.sleep(4)
+
+        # ✅ Read file once
+        pdf_bytes = pdf_file.read()
+
+        # ✅ Offer download instead of inline display
+        st.download_button(
+            label="📄 Download Uploaded Resume",
+            data=pdf_bytes,
+            file_name=pdf_file.name,
+            mime="application/pdf"
+        )
+
+        # ✅ Save from bytes
+        save_pdf_path = './Uploaded_Resumes/' + pdf_file.name
+        with open(save_pdf_path, "wb") as f:
+            f.write(pdf_bytes)
+
+        resume_data = parse_resume(save_pdf_path)
 
             if resume_data:
                 ## Getting the whole resume data
@@ -416,6 +421,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
