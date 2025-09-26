@@ -1,5 +1,8 @@
 import streamlit as st
 import pandas as pd
+st.subheader("Submitted Resume Feedback")
+df = pd.DataFrame(rows)
+st.dataframe(df)
 import base64,random
 import time,datetime
 import nltk
@@ -342,22 +345,29 @@ def run():
         if st.button('Login'):
             if ad_user == 'Aashu' and ad_password == 'Aashu123':
                 st.success("Welcome Aashu!")
+            
                 ## Display Data
                 response = supabase.table("user_data").select("*").execute()
                 rows = response.data
+            
                 st.header("User's Data")
-                df = pd.DataFrame(data, columns=['ID', 'Name', 'Email', 'Resume Score', 'Timestamp', 'Total Page',
-                                                 'Predicted Field', 'User Level', 'Actual Skills', 'Recommended Skills',
-                                                 'Recommended Course'])
+                df = pd.DataFrame(rows)
                 st.dataframe(df)
-                st.markdown(get_table_download_link(df,'User_Data.csv','Download Report'), unsafe_allow_html=True)
-                
-                ## Admin Side Data
-                query = 'select * from user_data;'
-                plot_data = pd.read_sql(query, connection)
-                plot_data.columns = ['ID', 'Name', 'Email', 'Resume Score', 'Timestamp', 'Total Page',
-                     'Predicted Field', 'User Level', 'Actual Skills', 'Recommended Skills',
-                     'Recommended Course']
+                st.markdown(get_table_download_link(df, 'User_Data.csv', 'Download Report'), unsafe_allow_html=True)
+            
+                ## Pie chart for predicted field recommendations
+                st.subheader("Pie-Chart for Predicted Field Recommendation")
+                if 'reco_field' in df.columns:
+                    values = df['reco_field'].value_counts()
+                    fig = px.pie(names=values.index, values=values.values, title='Predicted Field according to the Skills')
+                    st.plotly_chart(fig)
+            
+                ## Pie chart for User's Experienced Level
+                st.subheader("Pie-Chart for User's Experienced Level")
+                if 'cand_level' in df.columns:
+                    values = df['cand_level'].value_counts()
+                    fig = px.pie(names=values.index, values=values.values, title="Pie-Chart for User's Experienced Level")
+                    st.plotly_chart(fig)
 
                 ## Pie chart for predicted field recommendations
                 labels = plot_data['Predicted Field'].unique()
@@ -380,6 +390,7 @@ def run():
 
 
 run()
+
 
 
 
