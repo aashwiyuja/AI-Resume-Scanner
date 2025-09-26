@@ -106,6 +106,8 @@ def parse_resume(file_path):
         if len(line.split()) <= 3 and line[0].isupper():
             name = line.strip()
             break
+    all_keywords = ds_keyword + web_keyword + android_keyword + ios_keyword + uiux_keyword
+    skills = [skill for skill in all_keywords if skill.lower() in text.lower()]
 
     return {
         'name': name,
@@ -401,6 +403,7 @@ def run():
                 st.error("Wrong ID & Password Provided")
 
 run()
+
 
 
 
